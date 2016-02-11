@@ -27,7 +27,7 @@ namespace SuperHeroManager.Tests.Contexts
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Name, Is.EqualTo("Batman"));
-            Assert.That(result.Skills.Count, Is.EqualTo(1));
+            Assert.That(result.Skills.Count, Is.EqualTo(2));
         }
     }
 }
