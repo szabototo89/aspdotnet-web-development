@@ -5,26 +5,40 @@ using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperHeroManager.Tests.Contexts
 {
-    public class ApplicationDbTestInitializer : DropCreateDatabaseAlways<ApplicationContext>
+  public class ApplicationDbTestInitializer : DropCreateDatabaseAlways<ApplicationContext>
+  {
+    protected override void Seed(ApplicationContext context)
     {
-        protected override void Seed(ApplicationContext context)
+      var justiceLeague = new Team
+      {
+        Name = "Justice League",
+      };
+
+      var batman = new SuperHero
+      {
+        Name = "Batman",
+        Skills = new List<Skill>
         {
-            var batmanSkills = new[]
-            {
-                new Skill() {Name = "Ninjutsu", Description = "Professional in several martial arts. "}
-            };
+          new Skill
+          {
+            Name = "Ninjutsu",
+            Description = "Professional in several martial arts. ",
+            Value = 10
+          },
+          new Skill
+          {
+            Name="Detective",
+            Description = "",
+            Value = 10
+          }
+        },
+        Teams = new List<Team> { justiceLeague }
+      };
 
-            var superheroes = new[]
-            {
-                new SuperHero()
-                {
-                    Name = "Batman",
-                    Skills = new List<Skill>(batmanSkills)
-                },
-            };
+      justiceLeague.SuperHeroes = new List<SuperHero> { batman };
 
-            context.Superheroes.AddRange(superheroes);
-            context.SaveChanges();
-        }
+      context.Superheroes.Add(batman);
+      context.SaveChanges();
     }
+  }
 }

@@ -11,6 +11,10 @@ namespace SuperHeroManager.DataModels.Superheroes
 
         public String Name { get; set; }
 
+        public Boolean IsOnMission { get; set; }
+
         public virtual List<Skill> Skills { get; set; }
+
+        public virtual List<Team> Teams { get; set; } 
     }
 }
