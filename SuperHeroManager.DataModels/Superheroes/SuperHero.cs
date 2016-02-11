@@ -11,6 +11,6 @@ namespace SuperHeroManager.DataModels.Superheroes
 
         public String Name { get; set; }
 
-        public IEnumerable<Skill> Skills { get; set; }
+        public virtual List<Skill> Skills { get; set; }
     }
 }

@@ -6,11 +6,13 @@ namespace SuperHeroManager.DataModels.Contexts
 {
     public class ApplicationContext : DbContext
     {
-        public ApplicationContext(String nameOrConnectionString) 
-            : base(nameOrConnectionString)
+        public ApplicationContext() : base("MySuperheroDatabase")
         {
+            
         }
 
         public DbSet<SuperHero> Superheroes { get; set; }
+
+        public DbSet<Skill> Skills { get; set; } 
     }
 }
