@@ -4,9 +4,9 @@ using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperHeroManager.DataModels.Contexts
 {
-    public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationContext>
+    public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationContextBase>
     {
-        protected override void Seed(ApplicationContext context)
+        protected override void Seed(ApplicationContextBase contextBase)
         {
             var superheroes = new[]
             {
@@ -24,8 +24,8 @@ namespace SuperHeroManager.DataModels.Contexts
                 },
             };
 
-            context.Superheroes.AddRange(superheroes);
-            context.SaveChanges();
+            contextBase.Superheroes.AddRange(superheroes);
+            contextBase.SaveChanges();
         }
     }
 }

@@ -8,7 +8,6 @@ namespace SuperHeroManager.DataModels.Superheroes
 {
     public class SuperHero : EntityBase
     {
-        [StringLength(30)]
         public String Name { get; set; }
 
         public Boolean IsOnMission { get; set; }

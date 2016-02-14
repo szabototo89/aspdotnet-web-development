@@ -5,9 +5,10 @@ using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperHeroManager.Tests.Contexts
 {
-  public class ApplicationDbTestInitializer : DropCreateDatabaseAlways<ApplicationContext>
+  public class ApplicationDbTestInitializer<TContext> : DropCreateDatabaseAlways<TContext>
+    where TContext: ApplicationContextBase
   {
-    protected override void Seed(ApplicationContext context)
+    protected override void Seed(TContext contextBase)
     {
       var justiceLeague = new Team
       {
@@ -37,10 +38,10 @@ namespace SuperHeroManager.Tests.Contexts
 
       justiceLeague.SuperHeroes = new List<SuperHero> { batman };
 
-      context.Superheroes.Add(batman);
+      contextBase.Superheroes.Add(batman);
 
       // saving the changes back into the database
-      context.SaveChanges();
+      contextBase.SaveChanges();
     }
   }
 }
