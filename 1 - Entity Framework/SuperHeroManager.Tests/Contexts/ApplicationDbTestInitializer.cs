@@ -38,6 +38,8 @@ namespace SuperHeroManager.Tests.Contexts
       justiceLeague.SuperHeroes = new List<SuperHero> { batman };
 
       context.Superheroes.Add(batman);
+
+      // saving the changes back into the database
       context.SaveChanges();
     }
   }

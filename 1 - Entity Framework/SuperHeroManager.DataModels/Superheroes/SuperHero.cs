@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using SuperHeroManager.DataModels.Common;
 
 namespace SuperHeroManager.DataModels.Superheroes
 {
     public class SuperHero : EntityBase
     {
-        public Int32 Id { get; set; }
-
+        [StringLength(30)]
         public String Name { get; set; }
 
         public Boolean IsOnMission { get; set; }
