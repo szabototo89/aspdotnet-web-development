@@ -49,20 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\EntityBase.cs" />
-    <Compile Include="Common\IEntity.cs" />
-    <Compile Include="Contexts\ApplicationContext.cs" />
-    <Compile Include="Contexts\ApplicationDbInitializer.cs" />
-    <Compile Include="Contexts\ApplicationContextBase.cs" />
-    <Compile Include="Contexts\ApplicationLegacyContext.cs" />
-    <Compile Include="Entities\Skill.cs" />
-    <Compile Include="Entities\SuperHero.cs" />
-    <Compile Include="Entities\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Contexts\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
