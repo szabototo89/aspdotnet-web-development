@@ -55,10 +55,10 @@
     <Compile Include="Contexts\ApplicationDbInitializer.cs" />
     <Compile Include="Contexts\ApplicationContextBase.cs" />
     <Compile Include="Contexts\ApplicationLegacyContext.cs" />
+    <Compile Include="Entities\Skill.cs" />
+    <Compile Include="Entities\SuperHero.cs" />
+    <Compile Include="Entities\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Superheroes\Skill.cs" />
-    <Compile Include="Superheroes\SuperHero.cs" />
-    <Compile Include="Superheroes\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
