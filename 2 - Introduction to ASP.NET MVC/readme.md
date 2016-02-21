@@ -27,4 +27,4 @@ Use cases:
 **Main folders**: *Views*, *Models*, and *Controllers*. 
 **Configuration files**: *web.config* (in Views and project), *RouteConfig* class, *Global.asax*.
 
- 
+ ## +1. Difference between object, var and dynamic keywords
