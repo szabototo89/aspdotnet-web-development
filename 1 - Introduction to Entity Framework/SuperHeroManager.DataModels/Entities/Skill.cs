@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SuperHeroManager.DataModels.Common;
 
 namespace SuperHeroManager.DataModels.Superheroes
 {
-    public class Team : EntityBase
+    public class Skill : EntityBase
     {
-        [Required]
         public String Name { get; set; }
 
-        public virtual List<SuperHero> SuperHeroes { get; set; } 
+        public Int32 Value { get; set; }
+
+        public String Description { get; set; }
     }
 }
