@@ -1,6 +1,8 @@
-# ASP.NET MVC web development
+ASP.NET MVC web development
+---------------------------
 
-## Agenda
+# Agenda
+
 
 1. Introduction to Entity Framework
   - **Code-First**, **Database-First** and **Model-First** approach
