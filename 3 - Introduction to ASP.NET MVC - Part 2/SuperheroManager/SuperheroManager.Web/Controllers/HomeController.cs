@@ -12,6 +12,8 @@ namespace SuperheroManager.Web.Controllers
     {
         public IEnumerable<Team> Teams { get; }
 
+        public String Superheroes { get; }
+
         public HomeControllerViewModel(IEnumerable<Team> teams)
         {
             Teams = teams;
@@ -32,6 +34,11 @@ namespace SuperheroManager.Web.Controllers
             var model = new HomeControllerViewModel(repository.GetTeams());
 
             return View("Index", model);
+        }
+
+        public ActionResult About()
+        {
+            return View("About");
         }
     }
 }

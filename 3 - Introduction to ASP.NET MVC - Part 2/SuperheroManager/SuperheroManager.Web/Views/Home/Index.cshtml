@@ -1,4 +1,5 @@
-﻿@model SuperheroManager.Web.Controllers.HomeControllerViewModel
+﻿@using SuperHeroManager.DataModels.Superheroes
+@model SuperheroManager.Web.Controllers.HomeControllerViewModel
 
 @{
     ViewBag.Title = "Home";
@@ -7,27 +8,62 @@
 
 <h2>Team Manager</h2>
 
+<div class="text-right">
+  <a href="@Url.Action("Index", "Home")" class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+    Sort ascending
+  </a>
+
+  <a href="#" class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-sort-by-alphabet"></i>
+    Sort by name
+  </a>
+</div>
+
 <table class="table table-responsive">
   <thead>
     <tr>
       <th>Team name</th>
+      <th>Superheroes</th>
       <th>Actions</th>
     </tr>
   </thead>
 
   @foreach (var team in Model.Teams)
   {
-    <tr>
-      <td>@team.Name</td>
-      <td>
-        <a href="#" class="btn btn-default">
-          Details
-        </a>
-        <a href="#" class="btn btn-danger">
-          <i class="glyphicon glyphicon-trash"></i>
-          Remove
-        </a>
-      </td>
-    </tr>
+      <tr>
+        <td>
+          @team.Name
+        </td>
+        <td title="@GetSuperheroes(team)">
+          @ShowSuperheroes(team)
+        </td>
+        <td>
+          <a href="#" class="btn btn-default">
+            Details
+          </a>
+          <a href="#" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            Remove
+          </a>
+        </td>
+      </tr>
   }
 </table>
+
+
+@functions {
+
+    public String GetSuperheroes(Team team) => String.Join(", ", team.SuperHeroes.Select(hero => hero.Name));
+
+    public String ShowSuperheroes(Team team)
+    {
+      var superheroes = GetSuperheroes(team);
+      var truncated = superheroes.Substring(0, Math.Min(100, superheroes.Length));
+
+      if (truncated.Length == superheroes.Length) return truncated;
+
+      return $"{truncated}...";
+    }
+
+}

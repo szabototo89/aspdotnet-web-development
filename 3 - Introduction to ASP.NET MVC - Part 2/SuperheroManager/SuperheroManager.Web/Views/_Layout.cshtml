@@ -1,4 +1,5 @@
-﻿@{
+﻿@using SuperheroManager.Web.Utilities
+@{
     Layout = null;
 }
 
@@ -18,12 +19,23 @@
       <div class="navbar-header">
         <a href="#" class="navbar-brand">Superhero Manager</a>
       </div>
+      <ul class="nav navbar-nav">
+        <li class="@Html.ToggleClass("active", () => Html.ActionName() == "Index")">
+          @Html.ActionLink("Team Manager", "Index", "Home")
+        </li>
+        <li>
+          <a href="#">Superhero Manager</a>
+        </li>
+        <li class="@Html.ToggleClass("active", () => Html.ActionName() == "About")">
+          @Html.ActionLink("About", "About", "Home")
+        </li>
+      </ul>
     </div>
   </div>
-  
+
   <div class="container">
     @RenderBody()
   </div>
-  
+
 </body>
 </html>

@@ -9,5 +9,6 @@ namespace SuperheroManager.Web.Models
     public interface IApplicationRepository
     {
         IEnumerable<Team> GetTeams();
+        IEnumerable<SuperHero> GetSuperheroes();
     }
 }
