@@ -9,14 +9,9 @@
 <h2>Team Manager</h2>
 
 <div class="text-right">
-  <a href="@Url.Action("Index", "Home")" class="btn btn-default btn-sm">
+  <a href="@Url.Action("GetTeams", "Home", new { isDescending = !Model.IsDescending })" class="btn btn-default btn-sm">
     <i class="glyphicon glyphicon-sort-by-attributes"></i>
-    Sort ascending
-  </a>
-
-  <a href="#" class="btn btn-default btn-sm">
-    <i class="glyphicon glyphicon-sort-by-alphabet"></i>
-    Sort by name
+    Sort @( Model.IsDescending ? "ascending" : "descending" )
   </a>
 </div>
 

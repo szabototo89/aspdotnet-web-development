@@ -9,14 +9,16 @@ namespace SuperheroManager.Web.Models
     {
         public IEnumerable<Team> GetTeams()
         {
+            var random = new Random();
+
             foreach (var index in Enumerable.Range(0, 10))
             {
                 yield return new Team
                 {
                     Id = index,
-                    Name = $"Superhero {index}",
+                    Name = $"Superhero {random.Next(100)}",
                     SuperHeroes = new List<SuperHero>(
-                        Enumerable.Range(0, 10).Select(i => new SuperHero()
+                        Enumerable.Range(0, random.Next(10)).Select(i => new SuperHero()
                         {
                             Id = i,
                             IsOnMission = false,
