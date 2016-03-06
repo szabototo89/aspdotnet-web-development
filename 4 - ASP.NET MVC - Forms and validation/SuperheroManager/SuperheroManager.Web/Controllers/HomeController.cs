@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,11 +17,31 @@ namespace SuperheroManager.Web.Controllers
             repository = new AdhocApplicationRepository();
         }
 
-        public ActionResult Index()
+        public ActionResult ShowWithPagination(IEnumerable<Team> teams, Boolean? isDescending, Int32 page)
         {
-            var model = new HomeControllerViewModel(repository.GetTeams());
+            var count = 5;
+            var originalTeams = teams.ToArray();
+
+            IEnumerable<Team> currentTeams = originalTeams;
+
+            if (isDescending.HasValue)
+            {
+                currentTeams = isDescending == false
+                    ? currentTeams.OrderBy(team => team.Name)
+                    : currentTeams.OrderByDescending(team => team.Name);
+            }
+
+            currentTeams = currentTeams.Skip(page * count).Take(count);
+            var maxPages = (Int32)Math.Floor(originalTeams.Length / (Double)count);
+            var model = new HomeControllerViewModel(currentTeams, isDescending, page, maxPages);
 
             return View("Index", model);
+        }
+
+        public ActionResult Index(Int32 page = 0)
+        {
+            var originalTeams = repository.GetTeams().ToArray();
+            return ShowWithPagination(originalTeams, null, page);
         }
 
         public ActionResult About()
@@ -28,16 +49,10 @@ namespace SuperheroManager.Web.Controllers
             return View("About");
         }
 
-        public ActionResult GetTeams(String parameterName, Boolean isDescending)
+        public ActionResult GetTeams(Boolean isDescending, Int32 page)
         {
             var teams = repository.GetTeams().ToArray();
-            Func<Team, Object> keySelector = team => team.Name;
-
-            var orderedTeams = !isDescending 
-                ? teams.OrderBy(keySelector)
-                : teams.OrderByDescending(keySelector);
-
-            return View("Index", new HomeControllerViewModel(orderedTeams, isDescending));
+            return ShowWithPagination(teams, isDescending, page);
         }
     }
 }

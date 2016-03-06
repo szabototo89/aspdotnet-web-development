@@ -8,10 +8,69 @@
 
 <h2>Team Manager</h2>
 
+<nav>
+  <ul class="pagination">
+    <li>
+      @{
+        var previousPage = Math.Max(Model.CurrentPage - 1, 0);
+        var nextPage = Math.Min(Model.CurrentPage + 1, Model.MaxPages - 1);
+        var isDescending = Model.IsDescending.HasValue && Model.IsDescending.Value;
+      }
+      @if (Model.IsDescending.HasValue)
+      {
+        <a href="@Url.Action("GetTeams", "Home", new {page = previousPage, isDescending })" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      }
+      else
+      {
+        <a href="@Url.Action("Index", "Home", new {page = previousPage })" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      }
+    </li>
+
+    @for (var index = 0; index < Model.MaxPages; index++)
+    {
+      var isActive = index == Model.CurrentPage ? "active" : "";
+
+      <li class="@isActive">
+        @if (Model.IsDescending.HasValue)
+        {
+          <a href="@Url.Action("GetTeams", "Home", new { page = index, isDescending })">
+            @(index + 1)
+          </a>
+        }
+        else {
+          <a href="@Url.Action("Index", "Home", new { page = index })">
+            @(index + 1)
+          </a>
+        }
+      </li>
+    }
+
+    <li>
+      @if (Model.IsDescending.HasValue)
+      {
+        <a href="@Url.Action("GetTeams", "Home", new { page = nextPage, isDescending })" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      }
+      else
+      {
+        <a href="@Url.Action("Index", "Home", new {page = nextPage})" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      }
+    </li>
+  </ul>
+</nav>
+
 <div class="text-right">
-  <a href="@Url.Action("GetTeams", "Home", new { isDescending = !Model.IsDescending })" class="btn btn-default btn-sm">
+  <a href="@Url.Action("GetTeams", "Home", new { isDescending = Model.IsDescending.HasValue && !Model.IsDescending.Value, page = Model.CurrentPage })" class="btn btn-default btn-sm">
     <i class="glyphicon glyphicon-sort-by-attributes"></i>
-    Sort @( Model.IsDescending ? "ascending" : "descending" )
+    @{ var sortLabel = Model.IsDescending == true ? "ascending" : "descending"; }
+    Sort @sortLabel
   </a>
 </div>
 
@@ -45,7 +104,6 @@
       </tr>
   }
 </table>
-
 
 @functions {
 

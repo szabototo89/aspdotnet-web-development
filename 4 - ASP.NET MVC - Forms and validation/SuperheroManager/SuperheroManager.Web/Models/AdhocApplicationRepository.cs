@@ -11,7 +11,7 @@ namespace SuperheroManager.Web.Models
         {
             var random = new Random();
 
-            foreach (var index in Enumerable.Range(0, 10))
+            foreach (var index in Enumerable.Range(0, 100))
             {
                 yield return new Team
                 {
