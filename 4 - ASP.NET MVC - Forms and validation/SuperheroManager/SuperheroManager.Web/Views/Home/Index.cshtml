@@ -1,0 +1,64 @@
+﻿@using SuperHeroManager.DataModels.Superheroes
+@model SuperheroManager.Web.Controllers.HomeControllerViewModel
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Team Manager</h2>
+
+<div class="text-right">
+  <a href="@Url.Action("GetTeams", "Home", new { isDescending = !Model.IsDescending })" class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+    Sort @( Model.IsDescending ? "ascending" : "descending" )
+  </a>
+</div>
+
+<table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>Team name</th>
+      <th>Superheroes</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  @foreach (var team in Model.Teams)
+  {
+      <tr>
+        <td>
+          @team.Name
+        </td>
+        <td title="@GetSuperheroes(team)">
+          @ShowSuperheroes(team)
+        </td>
+        <td>
+          <a href="#" class="btn btn-default">
+            Details
+          </a>
+          <a href="#" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            Remove
+          </a>
+        </td>
+      </tr>
+  }
+</table>
+
+
+@functions {
+
+    public String GetSuperheroes(Team team) => String.Join(", ", team.SuperHeroes.Select(hero => hero.Name));
+
+    public String ShowSuperheroes(Team team)
+    {
+      var superheroes = GetSuperheroes(team);
+      var truncated = superheroes.Substring(0, Math.Min(100, superheroes.Length));
+
+      if (truncated.Length == superheroes.Length) return truncated;
+
+      return $"{truncated}...";
+    }
+
+}
