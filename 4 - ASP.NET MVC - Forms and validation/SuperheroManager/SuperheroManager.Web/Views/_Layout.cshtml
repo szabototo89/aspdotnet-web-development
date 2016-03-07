@@ -21,11 +21,13 @@
         <a href="#" class="navbar-brand">Superhero Manager</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="@Html.ToggleClass("active", () => Html.ActionName() == "Index")">
+        <li class="@Html.ToggleClass("active", () => Html.ActionName() == "Index" && Html.ControllerName() == "Home")">
           @Html.ActionLink("Team Manager", "Index", "Home")
         </li>
         <li>
-          <a href="#">Superhero Manager</a>
+          <li class="@Html.ToggleClass("active", () => Html.ActionName() == "Index" && Html.ControllerName() == "SuperheroManager")">
+            @Html.ActionLink("Superhero Manager", "Index", "SuperheroManager")
+          </li>
         </li>
         <li class="@Html.ToggleClass("active", () => Html.ActionName() == "About")">
           @Html.ActionLink("About", "About", "Home")
