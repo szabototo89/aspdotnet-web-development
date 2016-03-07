@@ -13,9 +13,7 @@ namespace SuperheroManager.Web.Controllers
 
         public String NewSkill { get; set; }
 
-        public String SelectedSkill { get; set; }
-
-        public String Skills { get; set; }
+        public List<String> Skills { get; set; }
 
         public List<String> AvailableTeams { get; set; }
 
@@ -23,7 +21,7 @@ namespace SuperheroManager.Web.Controllers
 
         public SuperheroViewModel()
         {
-            Skills = String.Empty;
+            Skills = new List<String>();
             AvailableTeams = new List<String>();
             CurrentTeams = new List<String>();
         }
@@ -44,51 +42,44 @@ namespace SuperheroManager.Web.Controllers
     {
         public ActionResult Index()
         {
-            var model = new SuperheroViewModel();
+            var model = new SuperheroViewModel()
+            {
+                AvailableTeams = new List<String>
+                {
+                    "Justice League",
+                    "Batman Incorporation",
+                    "Teen Titans",
+                    "Suicide Squad"
+                }
+            };
 
             return View("Index", model);
         }
 
         [HttpPost]
-        public ActionResult Index(SuperheroViewModel model, String submitType)
+        public ActionResult Index(SuperheroViewModel model)
         {
-            switch (submitType)
+            if (String.IsNullOrWhiteSpace(model.Name))
             {
-                case "Add skill":
-                    return AddSkill(model);
-                case "Remove selected skill":
-                    return RemoveSkill(model);
+                ModelState.AddModelError("Name", "Name cannot be empty.");
             }
 
-            return View("View", new SuperheroViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult AddSkill(SuperheroViewModel previousModel)
-        {
-            var skills = SkillExtensions.DeserializeSkills(previousModel.Skills);
-
-            var model = new SuperheroViewModel(previousModel)
+            if (model.Skills.Count > 3)
             {
-                NewSkill = String.Empty,
-                Skills = String.Join(",", skills.Concat(new [] { previousModel.NewSkill }))
-            };
+                ModelState.AddModelError("Skills", "Skills cannot be more than 3.");
+            }
 
-            return View("Index", model);
-        }
-
-        [HttpPost]
-        public ActionResult RemoveSkill(SuperheroViewModel previousModel)
-        {
-            var skills = SkillExtensions.DeserializeSkills(previousModel.Skills).ToList();
-            skills.Remove(previousModel.SelectedSkill);
-
-            var model = new SuperheroViewModel(previousModel)
+            if (!model.CurrentTeams.Any())
             {
-                Skills = SkillExtensions.SerializeSkills(skills)
-            };
+                ModelState.AddModelError("CurrentTeams", "Superhero must be assigned to a team.");
+            }
 
-            return View("Index", model);
+            if (!ModelState.IsValid)
+            {
+                return View("Index", new SuperheroViewModel());
+            }
+
+            return View("Notification", (Object)"Superhero has been added successfully.");
         }
     }
 }

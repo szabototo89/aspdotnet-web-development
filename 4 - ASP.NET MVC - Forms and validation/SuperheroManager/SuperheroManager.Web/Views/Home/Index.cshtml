@@ -76,32 +76,32 @@
 
 <table class="table table-responsive">
   <thead>
-    <tr>
-      <th>Team name</th>
-      <th>Superheroes</th>
-      <th>Actions</th>
-    </tr>
+  <tr>
+    <th>Team name</th>
+    <th>Superheroes</th>
+    <th>Actions</th>
+  </tr>
   </thead>
 
   @foreach (var team in Model.Teams)
   {
-      <tr>
-        <td>
-          @team.Name
-        </td>
-        <td title="@GetSuperheroes(team)">
-          @ShowSuperheroes(team)
-        </td>
-        <td>
-          <a href="#" class="btn btn-default">
-            Details
-          </a>
-          <a href="#" class="btn btn-danger">
-            <i class="glyphicon glyphicon-trash"></i>
-            Remove
-          </a>
-        </td>
-      </tr>
+    <tr>
+      <td>
+        @team.Name
+      </td>
+      <td title="@GetSuperheroes(team)">
+        @ShowSuperheroes(team)
+      </td>
+      <td>
+        <a href="#" class="btn btn-default">
+          Details
+        </a>
+        <a href="#" class="btn btn-danger">
+          <i class="glyphicon glyphicon-trash"></i>
+          Remove
+        </a>
+      </td>
+    </tr>
   }
 </table>
 
