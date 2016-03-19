@@ -38,6 +38,7 @@ namespace SuperheroManager.Web.Controllers
         }
     }
 
+    [Authorize]
     public class SuperheroManagerController : Controller
     {
         [HttpGet]

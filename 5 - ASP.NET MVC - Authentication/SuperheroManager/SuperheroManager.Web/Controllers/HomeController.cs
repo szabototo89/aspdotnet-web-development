@@ -8,6 +8,7 @@ using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperheroManager.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private static readonly AdhocApplicationRepository ApplicationRepository = new AdhocApplicationRepository();
