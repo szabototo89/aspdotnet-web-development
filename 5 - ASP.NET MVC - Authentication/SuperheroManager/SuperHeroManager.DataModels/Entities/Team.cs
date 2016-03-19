@@ -9,6 +9,6 @@ namespace SuperHeroManager.DataModels.Superheroes
     {
         public String Name { get; set; }
 
-        public virtual List<SuperHero> SuperHeroes { get; set; } 
+        public virtual List<Superhero> SuperHeroes { get; set; } 
     }
 }

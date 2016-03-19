@@ -11,7 +11,7 @@ namespace SuperHeroManager.DataModels.Contexts
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
-      var superheroConfiguration = modelBuilder.Entity<SuperHero>();
+      var superheroConfiguration = modelBuilder.Entity<Superhero>();
 
       superheroConfiguration.HasMany(hero => hero.Teams)
                             .WithMany(team => team.SuperHeroes);

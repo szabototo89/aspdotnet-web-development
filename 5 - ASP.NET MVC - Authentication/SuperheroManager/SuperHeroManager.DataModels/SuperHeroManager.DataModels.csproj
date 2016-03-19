@@ -58,6 +58,7 @@
     <Compile Include="Entities\Skill.cs" />
     <Compile Include="Entities\SuperHero.cs" />
     <Compile Include="Entities\Team.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SuperheroManager.Web.Models;
 using SuperheroManager.Web.Utilities;
+using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperheroManager.Web.Controllers
 {
@@ -41,18 +43,21 @@ namespace SuperheroManager.Web.Controllers
     [Authorize]
     public class SuperheroManagerController : Controller
     {
+        private readonly IApplicationRepository repository;
+
+        public SuperheroManagerController(IApplicationRepository repository)
+        {
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+
+            this.repository = repository;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
             var model = new SuperheroViewModel()
             {
-                AvailableTeams = new List<String>
-                {
-                    "Justice League",
-                    "Batman Incorporation",
-                    "Teen Titans",
-                    "Suicide Squad"
-                }
+                AvailableTeams = repository.GetTeams().Select(team => team.Name).ToList()
             };
 
             return View("Index", model);
@@ -81,9 +86,17 @@ namespace SuperheroManager.Web.Controllers
                 return View("Index", model);
             }
 
-            // todo
+            CreateSuperhero(model.Name, model.Skills, model.CurrentTeams);
 
             return View("Notification", (Object)"Superhero has been added successfully.");
+        }
+
+        private void CreateSuperhero(String name, IEnumerable<String> skills, IEnumerable<String> currentTeams)
+        {
+            var heroSkills = skills.Select(value => new Skill {Name = value, Value = 10}).ToArray();
+            var teams = this.repository.GetTeams().Where(team => currentTeams.Any(value => value == team.Name)).ToArray();
+
+            this.repository.AddSuperhero(name, heroSkills, teams);
         }
     }
 }

@@ -11,12 +11,13 @@ namespace SuperheroManager.Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private static readonly AdhocApplicationRepository ApplicationRepository = new AdhocApplicationRepository();
-        private readonly AdhocApplicationRepository repository;
+        private readonly IApplicationRepository repository;
 
-        public HomeController()
+        public HomeController(IApplicationRepository repository)
         {
-            repository = ApplicationRepository;
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+
+            this.repository = repository;
         }
 
         public ActionResult ShowWithPagination(IEnumerable<Team> teams, Nullable<Boolean> isDescending, Int32 page)

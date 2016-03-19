@@ -10,7 +10,7 @@ namespace SuperHeroManager.DataModels.Contexts
         {
             var superheroes = new[]
             {
-                new SuperHero()
+                new Superhero()
                 {
                     Name = "Batman",
                     Skills = new List<Skill>(new[]

@@ -6,7 +6,7 @@ using SuperHeroManager.DataModels.Common;
 
 namespace SuperHeroManager.DataModels.Superheroes
 {
-    public class SuperHero : EntityBase
+    public class Superhero : EntityBase
     {
         public String Name { get; set; }
 
