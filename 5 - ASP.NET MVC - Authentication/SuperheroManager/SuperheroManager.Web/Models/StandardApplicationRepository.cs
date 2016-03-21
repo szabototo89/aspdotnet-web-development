@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using SuperHeroManager.DataModels.Contexts;
 using SuperHeroManager.DataModels.Entities;
@@ -71,6 +72,24 @@ namespace SuperheroManager.Web.Models
         public Boolean IsValidUser(String userName, String password)
         {
             return context.Users.Any(user => user.Username == userName && user.Password == password);
+        }
+
+        public void RemoveTeam(Int32 id)
+        {
+            var team = context.Teams.FirstOrDefault(t => t.Id == id);
+            if (team == null) return;
+
+            context.Teams.Remove(team);
+            context.SaveChanges();
+        }
+
+        public void RemoveSuperhero(Int32 id)
+        {
+            var superhero = context.Superheroes.FirstOrDefault(hero => hero.Id == id);
+            if (superhero == null) return;
+
+            context.Superheroes.Remove(superhero);
+            context.SaveChanges();
         }
     }
 }

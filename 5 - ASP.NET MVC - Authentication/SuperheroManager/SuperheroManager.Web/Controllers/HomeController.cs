@@ -57,5 +57,27 @@ namespace SuperheroManager.Web.Controllers
             var teams = repository.GetTeams().ToArray();
             return ShowWithPagination(teams, isDescending, page);
         }
+
+        [HttpPost]
+        public ActionResult AddTeam(String teamName)
+        {
+            if (String.IsNullOrEmpty(teamName))
+            {
+                ModelState.AddModelError(nameof(teamName), $"Team name is required.");
+            }
+            else
+            {
+                repository.AddTeam(teamName);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult RemoveTeam(Int32 id)
+        {
+            repository.RemoveTeam(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,7 +1,3 @@
-# Introduction to ASP.NET MVC - Part 2
+# Introduction to ASP.NET MVC - Part 5
 
-## Agenda
-
-- Multiple actions and views
-- Navigating between views
-- Partial views, sections
+Uploading images: http://www.dotnetdreamer.net/upload-imagedisplay-image-in-aspnet-mvc

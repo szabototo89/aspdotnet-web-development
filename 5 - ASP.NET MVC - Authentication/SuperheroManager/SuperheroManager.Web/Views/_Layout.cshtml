@@ -1,6 +1,7 @@
 ﻿@using SuperheroManager.Web.Utilities
 @{
     Layout = null;
+    var isUserAthenticated = User.Identity.IsAuthenticated;
 }
 
 <!DOCTYPE html>
@@ -21,18 +22,17 @@
         <a href="#" class="navbar-brand">Superhero Manager</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="@Html.ToggleClass("active", () => Html.ActionName() == "Index" && Html.ControllerName() == "Home")">
-          @Html.ActionLink("Team Manager", "Index", "Home")
-        </li>
-        <li>
-          <li class="@Html.ToggleClass("active", () => Html.ActionName() == "Index" && Html.ControllerName() == "SuperheroManager")">
-            @Html.ActionLink("Superhero Manager", "Index", "SuperheroManager")
-          </li>
-        </li>
-        <li class="@Html.ToggleClass("active", () => Html.ActionName() == "About")">
-          @Html.ActionLink("About", "About", "Home")
-        </li>
-        @if (!User.Identity.IsAuthenticated)
+        @if (isUserAthenticated)
+        {
+          @MenuItem("Superheroes", "SuperheroList", "SuperheroManager")
+
+          @MenuItem("Teams", "Index", "Home")
+
+          @MenuItem("Superhero Manager", "Index", "SuperheroManager")
+
+          @MenuItem("About", "About", "Home")
+        }
+        else
         {
           <li>
             @Html.ActionLink("Login", "Index", "Account")
@@ -40,7 +40,7 @@
         }
       </ul>
 
-      @if (User.Identity.IsAuthenticated)
+      @if (isUserAthenticated)
       {
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -51,7 +51,6 @@
           </li>
         </ul>
       }
-
     </div>
   </div>
 
@@ -63,3 +62,11 @@
 
 </body>
 </html>
+
+
+@helper MenuItem(String title, String actionName, String controllerName)
+{
+    <li class="@Html.ToggleClass("active", () => Html.ActionName() == actionName && Html.ControllerName() == controllerName)">
+      @Html.ActionLink(title, actionName, controllerName)
+    </li>
+}

@@ -43,7 +43,7 @@ namespace SuperheroManager.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid user name or password.");
+                    ModelState.AddModelError(nameof(model.UserName), "Invalid user name or password.");
                 }
             }
 
@@ -54,7 +54,7 @@ namespace SuperheroManager.Web.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

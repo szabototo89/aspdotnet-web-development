@@ -19,5 +19,9 @@ namespace SuperheroManager.Web.Models
         void RegisterUser(String userName, String password);
 
         Boolean IsValidUser(String userName, String password);
+
+        void RemoveTeam(Int32 id);
+
+        void RemoveSuperhero(Int32 id);
     }
 }

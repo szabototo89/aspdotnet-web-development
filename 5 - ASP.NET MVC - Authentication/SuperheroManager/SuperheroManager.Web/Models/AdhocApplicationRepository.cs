@@ -70,5 +70,23 @@ namespace SuperheroManager.Web.Models
         }
 
         public Boolean IsValidUser(String userName, String password) => users.Any(user => user.Username == userName && user.Password == password);
+        public void RemoveTeam(Int32 id)
+        {
+            var team = teams.FirstOrDefault(t => t.Id == id);
+
+            if (team != null)
+            {
+                teams.Remove(team);
+            }
+        }
+
+        public void RemoveSuperhero(Int32 id)
+        {
+            var superhero = superheroes.FirstOrDefault(hero => hero.Id == id);
+            if (superhero != null)
+            {
+                superheroes.Remove(superhero);
+            }
+        }
     }
 }

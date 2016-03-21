@@ -128,7 +128,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoginViewModel.cs" />
     <Compile Include="Controllers\RegisterViewModel.cs" />
+    <Compile Include="Controllers\SuperheroListViewModel.cs" />
     <Compile Include="Controllers\SuperheroManagerController.cs" />
+    <Compile Include="Controllers\SuperheroRegistrationViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,6 +154,7 @@
     <Content Include="Views\SuperheroManager\Notification.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\SuperheroManager\SuperheroView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
