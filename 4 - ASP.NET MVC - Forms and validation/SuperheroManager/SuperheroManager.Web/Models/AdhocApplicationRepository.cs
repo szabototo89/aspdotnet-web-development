@@ -18,7 +18,7 @@ namespace SuperheroManager.Web.Models
                     Id = index,
                     Name = $"Superhero {random.Next(100)}",
                     SuperHeroes = new List<SuperHero>(
-                        Enumerable.Range(0, random.Next(10)).Select(i => new SuperHero()
+                        Enumerable.Range(0, random.Next(1, 10)).Select(i => new SuperHero()
                         {
                             Id = i,
                             IsOnMission = false,

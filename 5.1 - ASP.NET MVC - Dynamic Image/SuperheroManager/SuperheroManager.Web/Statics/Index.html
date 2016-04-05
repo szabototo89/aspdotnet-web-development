@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Superhero Manager</title>
+  <script src="../Scripts/jquery-1.9.1.js"></script>
+  <script src="../Scripts/bootstrap.js"></script>
+  <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+  <link href="../Styles/application.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">Superhero Manager</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">Team Manager</a>
+        </li>
+        <li class="active">
+          <a href="#">Superhero Manager</a>
+        </li>
+        <li>
+          <a href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Superhero Manager <small>Create a new superhero</small></h2>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-group">
+          <label for="name" class="control-label">
+            Name
+          </label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Type your superhero name here ...">
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+              <label for="skillName" class="control-label">
+                New skill
+              </label>
+              <input type="text" name="" id="skillName" class="form-control" placeholder="Type your superhero skill here ...">
+            </div>
+
+            <div class="text-right">
+              <a href="#" class="btn btn-sm btn-primary">Add skill</a>
+              <a href="#" class="btn btn-sm btn-danger">Remove selected skill</a>
+            </div>
+
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+              <label for="">Skills</label>
+
+              <select size="5" class="form-control"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+              <label for="currentTeams" class="control-label">Current teams</label>
+              <select id="currentTeams" size="5" class="form-control"></select>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+              <label for="availableTeams" class="control-label">Available teams</label>
+              <select id="availableTeams" size="5" class="form-control"></select>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="text-right">
+              <a href="#" class="btn btn-default btn-sm">Add team</a>
+              <a href="#" class="btn btn-danger btn-sm">Remove team</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-right">
+      <a href="#" class="btn btn-primary">Create superhero</a>
+      <a href="#" class="btn btn-warning">Clear data</a>
+    </div>
+  </div>
+
+</body>
+</html>

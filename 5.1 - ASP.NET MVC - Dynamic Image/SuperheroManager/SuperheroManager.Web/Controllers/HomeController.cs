@@ -8,14 +8,16 @@ using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperheroManager.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private static readonly AdhocApplicationRepository ApplicationRepository = new AdhocApplicationRepository();
-        private readonly AdhocApplicationRepository repository;
+        private readonly IApplicationRepository repository;
 
-        public HomeController()
+        public HomeController(IApplicationRepository repository)
         {
-            repository = ApplicationRepository;
+            if (repository == null) throw new ArgumentNullException(nameof(repository));
+
+            this.repository = repository;
         }
 
         public ActionResult ShowWithPagination(IEnumerable<Team> teams, Nullable<Boolean> isDescending, Int32 page)
@@ -41,7 +43,7 @@ namespace SuperheroManager.Web.Controllers
 
         public ActionResult Index(Int32 page = 0)
         {
-            var originalTeams = repository.GetTeams().ToArray().Where(team => team.SuperHeroes.Any());
+            var originalTeams = repository.GetTeams().ToArray();
             return ShowWithPagination(originalTeams, null, page);
         }
 
@@ -54,6 +56,28 @@ namespace SuperheroManager.Web.Controllers
         {
             var teams = repository.GetTeams().ToArray();
             return ShowWithPagination(teams, isDescending, page);
+        }
+
+        [HttpPost]
+        public ActionResult AddTeam(String teamName)
+        {
+            if (String.IsNullOrEmpty(teamName))
+            {
+                ModelState.AddModelError(nameof(teamName), $"Team name is required.");
+            }
+            else
+            {
+                repository.AddTeam(teamName);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult RemoveTeam(Int32 id)
+        {
+            repository.RemoveTeam(id);
+
+            return RedirectToAction("Index");
         }
     }
 }
