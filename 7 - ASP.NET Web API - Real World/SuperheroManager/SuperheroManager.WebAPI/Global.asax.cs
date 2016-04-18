@@ -14,10 +14,10 @@ namespace SuperheroManager.WebAPI
     {
         protected void Application_Start()
         {
-            IApplicationRepository repository = new AdhocApplicationRepository();
-            var activator = new CustomHttpControllerActivator(repository);
+            //IApplicationRepository repository = new AdhocApplicationRepository();
+            //var activator = new CustomHttpControllerActivator(repository);
 
-            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), activator);
+            //GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), activator);
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

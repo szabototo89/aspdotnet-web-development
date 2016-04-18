@@ -8,24 +8,8 @@ using SuperheroManager.WebAPI.Controllers;
 
 namespace SuperheroManager.WebAPI.ControllerFactory
 {
-    public class CustomHttpControllerActivator : IHttpControllerActivator
+    public class CustomHttpControllerActivator // : IHttpControllerActivator
     {
-        private readonly IApplicationRepository repository;
-
-        public CustomHttpControllerActivator(IApplicationRepository repository)
-        {
-            if (repository == null) throw new ArgumentNullException(nameof(repository));
-            this.repository = repository;
-        }
-
-        public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
-        {
-            if (controllerType == typeof (SuperheroController))
-            {
-                return new SuperheroController(repository);
-            }
-
-            return null;
-        }
+        
     }
 }
