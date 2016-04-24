@@ -52,19 +52,13 @@ namespace SuperheroManager.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult CreateSuperhero(Superhero superhero)
         {
-            this.repository.AddSuperhero(
+            var id = this.repository.AddSuperhero(
                 superhero.Name, 
                 superhero.Skills, 
                 superhero.Teams
             );
 
-            return Ok();
-        }
-
-        [HttpDelete]
-        public IHttpActionResult RemoveSuperheroes()
-        {
-            
+            return Ok(id);
         }
 
         [Route("{id}")]

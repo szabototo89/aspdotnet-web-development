@@ -1,0 +1,38 @@
+﻿@model SuperheroManager.Web.Controllers.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Register new user account</h2>
+
+
+@using (Html.BeginForm("Register", "Account"))
+{
+  <div class="form-group">
+    <label class="control-label">Username</label>
+    @Html.TextBoxFor(model => model.UserName, new {@class = "form-control", placeholder = "Type your user name here ..."})
+
+    <small class="text-danger">
+      @Html.ValidationMessageFor(model => model.UserName)
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Password</label>
+    @Html.PasswordFor(model => model.Password, new {@class = "form-control", placeholder = "Type your password here ..."})
+
+    <small class="text-danger">
+      @Html.ValidationMessageFor(model => model.Password)
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Password again</label>
+    @Html.PasswordFor(model => model.PasswordAgain, new {@class = "form-control", placeholder = "Type your password here again ..."})
+  </div>
+
+  <div class="pull-right">
+    <input type="submit" class="btn btn-primary" value="Create user" />
+  </div>
+}

@@ -1,0 +1,83 @@
+﻿<Window x:Class="SuperheroManager.AdministrationApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:SuperheroManager.AdministrationApp.ViewModels"
+        d:DataContext="{d:DesignInstance viewModels:ApplicationViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+  <Grid>
+    <TabControl>
+      <TabItem Header="Superheroes">
+        <GroupBox Header="Available superheroes" DataContext="{Binding SuperheroesViewModel}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="173*" />
+              <RowDefinition Height="76*"/>
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ListBox ItemsSource="{Binding Superheroes}" 
+                     SelectedValue="{Binding SelectedSuperhero}"
+                     Grid.Row="0" 
+                     Grid.RowSpan="2">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Grid.Row="2" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Right"
+                        Margin="10 10 0 0">
+              <StackPanel.Resources>
+                <Style TargetType="Button">
+                  <Setter Property="Margin" Value="5 0 0 0" />
+                </Style>
+              </StackPanel.Resources>
+              <Button Command="{Binding AddSuperheroCommand}">Add</Button>
+              <Button Command="{Binding RemoveSuperheroCommand}">Remove</Button>
+            </StackPanel>
+          </Grid>
+        </GroupBox>
+      </TabItem>
+
+      <TabItem Header="Superhero details" DataContext="{Binding DetailedSuperheroViewModel}">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+
+          <GroupBox Grid.Column="0" Padding="5">
+            <GroupBox.Resources>
+              <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="5 0 5 0" />
+              </Style>
+            </GroupBox.Resources>
+            <StackPanel>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="First"/>
+                  <ColumnDefinition Width="*" SharedSizeGroup="First"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Name" />
+                <TextBox Grid.Column="1" Text="{Binding Name}" />
+              </Grid>
+            </StackPanel>
+          </GroupBox>
+          
+          <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Command="{Binding UpdateSuperheroCommand}">Update</Button>
+          </StackPanel>
+          
+        </Grid>
+      </TabItem>
+
+    </TabControl>
+  </Grid>
+</Window>
