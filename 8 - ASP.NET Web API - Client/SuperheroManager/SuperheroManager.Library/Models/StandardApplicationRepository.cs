@@ -39,7 +39,7 @@ namespace SuperheroManager.Library.Models
             context.SaveChanges();
         }
 
-        public Int32 AddSuperhero(String name, IEnumerable<Skill> skills, IEnumerable<Team> teams)
+        public Int32 AddSuperhero(String name, IEnumerable<Skill> skills, IEnumerable<Team> teams, Boolean isOnMission)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
             if (skills == null) throw new ArgumentNullException(nameof(skills));
@@ -49,7 +49,8 @@ namespace SuperheroManager.Library.Models
             {
                 Name = name,
                 Skills = skills.ToList(),
-                Teams = teams.ToList()
+                Teams = teams.ToList(),
+                IsOnMission = isOnMission
             };
 
             context.Superheroes.Add(superhero);
@@ -58,7 +59,7 @@ namespace SuperheroManager.Library.Models
 
             foreach (var team in teams)
             {
-                var savedTeam = allTeams.FirstOrDefault(element => element.Id == team.Id);
+                var savedTeam = allTeams.FirstOrDefault(element => element.Name == team.Name);
 
                 savedTeam.SuperHeroes.Add(superhero);
             }

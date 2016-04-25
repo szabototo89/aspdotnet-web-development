@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 using SuperHeroManager.DataModels.Common;
 
 namespace SuperHeroManager.DataModels.Superheroes

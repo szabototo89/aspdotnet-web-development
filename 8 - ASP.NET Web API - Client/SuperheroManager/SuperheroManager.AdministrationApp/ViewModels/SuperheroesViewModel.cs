@@ -14,8 +14,17 @@ namespace SuperheroManager.AdministrationApp.ViewModels
         private Superhero selectedSuperhero;
         private ActionCommand addSuperheroCommand;
         private ActionCommand removeSuperheroCommand;
+        private ObservableCollection<Superhero> superheroes;
 
-        public ObservableCollection<Superhero> Superheroes { get; private set; }
+        public ObservableCollection<Superhero> Superheroes
+        {
+            get { return superheroes; }
+            private set
+            {
+                superheroes = value;
+                OnPropertyChanged(nameof(Superheroes));
+            }
+        }
 
         public Superhero SelectedSuperhero
         {

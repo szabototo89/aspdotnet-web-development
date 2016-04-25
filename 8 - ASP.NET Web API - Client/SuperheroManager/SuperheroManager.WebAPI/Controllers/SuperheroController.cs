@@ -17,7 +17,6 @@ namespace SuperheroManager.WebAPI.Controllers
         private readonly IApplicationRepository repository;
         // GET, POST, PUT, DELETE
 
-
         public SuperheroController(IApplicationRepository repository)
         {
             if (repository == null)
@@ -54,8 +53,9 @@ namespace SuperheroManager.WebAPI.Controllers
         {
             var id = this.repository.AddSuperhero(
                 superhero.Name, 
-                superhero.Skills, 
-                superhero.Teams
+                superhero.Skills ?? Enumerable.Empty<Skill>(), 
+                superhero.Teams ?? Enumerable.Empty<Team>(),
+                isOnMission: false
             );
 
             return Ok(id);
@@ -81,8 +81,9 @@ namespace SuperheroManager.WebAPI.Controllers
             this.repository.RemoveSuperhero(id);
             this.repository.AddSuperhero(
                 superhero.Name ?? hero.Name,
-                superhero.Skills ?? hero.Skills,
-                superhero.Teams ?? hero.Teams
+                superhero.Skills ?? hero.Skills ?? Enumerable.Empty<Skill>(),
+                superhero.Teams ?? hero.Teams ?? Enumerable.Empty<Team>(),
+                superhero.IsOnMission
             );
 
             return Ok();

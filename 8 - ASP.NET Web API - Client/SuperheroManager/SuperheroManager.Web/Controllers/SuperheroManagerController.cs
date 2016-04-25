@@ -56,7 +56,7 @@ namespace SuperheroManager.Web.Controllers
             var heroSkills = skills.Select(value => new Skill {Name = value, Value = 10}).ToArray();
             var teams = this.repository.GetTeams().Where(team => currentTeams.Any(value => value == team.Name)).ToArray();
 
-            this.repository.AddSuperhero(name, heroSkills, teams);
+            this.repository.AddSuperhero(name, heroSkills, teams, false);
         }
 
         [HttpPost]

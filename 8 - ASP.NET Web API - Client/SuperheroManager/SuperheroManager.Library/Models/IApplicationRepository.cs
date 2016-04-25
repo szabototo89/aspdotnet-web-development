@@ -11,7 +11,7 @@ namespace SuperheroManager.Library.Models
 
         void AddTeam(String name);
 
-        Int32 AddSuperhero(String name, IEnumerable<Skill> skills, IEnumerable<Team> teams);
+        Int32 AddSuperhero(String name, IEnumerable<Skill> skills, IEnumerable<Team> teams, Boolean isOnMission);
 
         void RegisterUser(String userName, String password);
 

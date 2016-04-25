@@ -56,14 +56,15 @@ namespace SuperheroManager.Library.Models
             teams.Add(new Team() { Name = name, SuperHeroes = new List<Superhero>() });
         }
 
-        public Int32 AddSuperhero(String name, IEnumerable<Skill> skills, IEnumerable<Team> teams)
+        public Int32 AddSuperhero(String name, IEnumerable<Skill> skills, IEnumerable<Team> teams, Boolean isOnMission)
         {
             var superhero = new Superhero
             {
                 Id = idCounter,
                 Name = name,
                 Skills = skills?.ToList(),
-                Teams = teams?.ToList()
+                Teams = teams?.ToList(),
+                IsOnMission = isOnMission
             };
 
             this.superheroes.Add(superhero);

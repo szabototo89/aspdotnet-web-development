@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using SuperheroManager.AdministrationApp.Annotations;
 using SuperHeroManager.DataModels.Superheroes;
 
@@ -12,13 +15,11 @@ namespace SuperheroManager.AdministrationApp.Models
 {
     public class DefaultApplicationRepository : IApplicationRepository, IDisposable
     {
-        private readonly String baseAddress;
         private HttpClient client;
 
         public DefaultApplicationRepository(String baseAddress)
         {
             if (baseAddress == null) throw new ArgumentNullException(nameof(baseAddress));
-            this.baseAddress = baseAddress;
 
             InitializeHttpClient(baseAddress);
         }
@@ -75,12 +76,25 @@ namespace SuperheroManager.AdministrationApp.Models
             if (value == null) throw new ArgumentNullException(nameof(value));
 
             var response = await client.PutAsJsonAsync($"api/superhero/{value.Id}", value);
+
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("An error has been occured during updating the selected superhero");
             }
 
             return await response.Content.ReadAsAsync<Superhero>();
+        }
+
+        public async Task<IEnumerable<Team>> GetTeams()
+        {
+            var response = await client.GetAsync("api/team");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("An error has been occured during getting available teams");
+            }
+
+            return await response.Content.ReadAsAsync<IEnumerable<Team>>();
         }
 
         public void Dispose()

@@ -27,6 +27,11 @@ namespace SuperheroManager.WebAPI.ControllerFactory
                 return new SuperheroController(repository);
             }
 
+            if (controllerType == typeof (TeamController))
+            {
+                return new TeamController(repository);
+            }
+
             return null;
         }
     }

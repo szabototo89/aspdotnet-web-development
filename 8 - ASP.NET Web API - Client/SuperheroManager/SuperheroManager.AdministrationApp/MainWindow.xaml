@@ -46,7 +46,7 @@
       </TabItem>
 
       <TabItem Header="Superhero details" DataContext="{Binding DetailedSuperheroViewModel}">
-        <Grid>
+        <Grid IsSharedSizeScope="True">
           <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -58,23 +58,74 @@
                 <Setter Property="Margin" Value="5 0 5 0" />
               </Style>
             </GroupBox.Resources>
-            <StackPanel>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto" SharedSizeGroup="First"/>
-                  <ColumnDefinition Width="*" SharedSizeGroup="First"/>
-                </Grid.ColumnDefinitions>
+            <DockPanel>
+              <GroupBox Header="General information" DockPanel.Dock="Top">
+                <StackPanel>
+                  <Grid Margin="0 5 0 5">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" SharedSizeGroup="First"/>
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Name" />
-                <TextBox Grid.Column="1" Text="{Binding Name}" />
-              </Grid>
-            </StackPanel>
+                    <TextBlock Grid.Column="0" Text="Name" />
+                    <TextBox Grid.Column="1" Text="{Binding Name}" />
+                  </Grid>
+
+                  <CheckBox IsChecked="{Binding IsOnMission}" HorizontalAlignment="Right">
+                    On Mission
+                  </CheckBox>
+                </StackPanel>
+              </GroupBox>
+
+              <GroupBox Header="Teams">
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+                  <Grid Margin="0 5 0 5" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" SharedSizeGroup="First"/>
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Current team" />
+                    <TextBox Grid.Column="1" Text="{Binding TeamName}" />
+                  </Grid>
+
+                  <ListBox Grid.Row="1"
+                           ItemsSource="{Binding Teams}"
+                           SelectedItem="{Binding SelectedTeam}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate>
+                        <ListBoxItem Content="{Binding Name}" />
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+
+                  <StackPanel Orientation="Horizontal" 
+                              Margin="0 5 0 0" 
+                              Grid.Row="2"
+                              HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                      <Style TargetType="Button">
+                        <Setter Property="MinWidth" Value="50" />
+                      </Style>
+                    </StackPanel.Resources>
+                    <Button Command="{Binding AddTeamCommand}" Margin="0 0 5 0">Add</Button>
+                    <Button Command="{Binding RemoveTeamCommand}">Remove</Button>
+                  </StackPanel>
+                </Grid>
+              </GroupBox>
+
+            </DockPanel>
           </GroupBox>
-          
-          <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Command="{Binding UpdateSuperheroCommand}">Update</Button>
+
+          <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+            <Button Command="{Binding UpdateSuperheroCommand}" HorizontalAlignment="Right">Update</Button>
           </StackPanel>
-          
+
         </Grid>
       </TabItem>
 

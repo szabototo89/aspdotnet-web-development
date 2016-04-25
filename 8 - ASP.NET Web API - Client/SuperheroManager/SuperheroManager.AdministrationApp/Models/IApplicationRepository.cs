@@ -11,5 +11,7 @@ namespace SuperheroManager.AdministrationApp.Models
         Task<Int32> CreateSuperheroAsync(Superhero superhero);
         Task RemoveSuperheroAsync(Superhero selectedSuperhero);
         Task<Superhero> UpdateSuperheroAsync(Int32 id, Superhero value);
+
+        Task<IEnumerable<Team>> GetTeams();
     }
 }

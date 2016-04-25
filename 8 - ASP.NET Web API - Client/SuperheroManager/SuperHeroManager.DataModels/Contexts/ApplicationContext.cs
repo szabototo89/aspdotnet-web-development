@@ -5,7 +5,7 @@ namespace SuperHeroManager.DataModels.Contexts
 {
   public class ApplicationContext : ApplicationContextBase
   {
-    public ApplicationContext() : base("MyCurrentSuperheroDatabase")
+    public ApplicationContext() : base(@"Server=(localdb)\MSSQLLocalDB;Database=MyCurrentSuperheroDatabase")
     {
     }
 

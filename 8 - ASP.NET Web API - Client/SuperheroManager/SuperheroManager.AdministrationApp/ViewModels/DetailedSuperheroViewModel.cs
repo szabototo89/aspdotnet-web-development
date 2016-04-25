@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using SuperheroManager.AdministrationApp.Annotations;
 using SuperheroManager.AdministrationApp.Models;
 using SuperHeroManager.DataModels.Superheroes;
@@ -11,6 +14,11 @@ namespace SuperheroManager.AdministrationApp.ViewModels
         private readonly IApplicationRepository repository;
         private readonly Superhero superhero;
         private ActionCommand updateSuperheroCommand;
+        private Team selectedTeam;
+        private ActionCommand addTeamCommand;
+        private ActionCommand removeTeamCommand;
+        private String teamName;
+        private ObservableCollection<Team> superheroTeams;
 
         public DetailedSuperheroViewModel([NotNull] SuperheroesViewModel superheroesViewModel, IApplicationRepository repository, Superhero superhero)
         {
@@ -21,6 +29,7 @@ namespace SuperheroManager.AdministrationApp.ViewModels
             this.superheroesViewModel = superheroesViewModel;
             this.repository = repository;
             this.superhero = superhero;
+            this.superheroTeams = new ObservableCollection<Team>(superhero.Teams ?? Enumerable.Empty<Team>());
 
             InitializeCommands();
         }
@@ -29,8 +38,20 @@ namespace SuperheroManager.AdministrationApp.ViewModels
         {
             updateSuperheroCommand = new ActionCommand(async () =>
             {
+                superhero.Teams = Teams.ToList();
                 await this.repository.UpdateSuperheroAsync(superhero.Id, superhero);
                 await superheroesViewModel.RefreshViewModelAsync();
+            });
+
+            addTeamCommand = new ActionCommand(() =>
+            {
+                Teams.Add(new Team { Name = TeamName });
+                TeamName = String.Empty;
+            });
+
+            removeTeamCommand = new ActionCommand(() =>
+            {
+                Teams.Remove(SelectedTeam);
             });
         }
 
@@ -46,6 +67,39 @@ namespace SuperheroManager.AdministrationApp.ViewModels
             set { superhero.IsOnMission = value; }
         }
 
+        public ObservableCollection<Team> Teams
+        {
+            get { return superheroTeams; }
+        }
+
+        public IEnumerable<Skill> Skills
+        {
+            get { return superhero.Skills; }
+        }
+
+        public ActionCommand AddTeamCommand => addTeamCommand;
+        public ActionCommand RemoveTeamCommand => removeTeamCommand;
         public ActionCommand UpdateSuperheroCommand => updateSuperheroCommand;
+
+        public Team SelectedTeam
+        {
+            get { return selectedTeam; }
+            set
+            {
+                selectedTeam = value;
+                OnPropertyChanged(nameof(SelectedTeam));
+            }
+        }
+
+        public String TeamName
+        {
+            get { return teamName; }
+            set
+            {
+                teamName = value;
+                OnPropertyChanged(nameof(TeamName));
+            }
+        }
+
     }
 }
