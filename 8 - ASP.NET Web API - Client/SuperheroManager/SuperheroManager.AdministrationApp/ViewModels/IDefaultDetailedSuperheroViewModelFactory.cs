@@ -1,4 +1,4 @@
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.AdministrationApp.ViewModels
 {

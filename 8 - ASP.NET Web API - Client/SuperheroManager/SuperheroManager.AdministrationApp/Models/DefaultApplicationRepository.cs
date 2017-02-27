@@ -9,17 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SuperheroManager.AdministrationApp.Annotations;
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.AdministrationApp.Models
 {
     public class DefaultApplicationRepository : IApplicationRepository, IDisposable
     {
         private HttpClient client;
+        private readonly JsonMediaTypeFormatter jsonMediaTypeFormatter;
 
         public DefaultApplicationRepository(String baseAddress)
         {
             if (baseAddress == null) throw new ArgumentNullException(nameof(baseAddress));
+
+            jsonMediaTypeFormatter = new JsonMediaTypeFormatter
+            {
+                SerializerSettings =
+                {
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                }
+            };
 
             InitializeHttpClient(baseAddress);
         }
@@ -50,7 +60,7 @@ namespace SuperheroManager.AdministrationApp.Models
         {
             if (superhero == null) throw new ArgumentNullException(nameof(superhero));
 
-            var response = await client.PostAsJsonAsync("api/superhero", superhero);
+            var response = await client.PostAsync("api/superhero", superhero, jsonMediaTypeFormatter);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"An error has been occured during adding a new superhero: {response.StatusCode}");
@@ -75,7 +85,7 @@ namespace SuperheroManager.AdministrationApp.Models
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
 
-            var response = await client.PutAsJsonAsync($"api/superhero/{value.Id}", value);
+            var response = await client.PutAsync($"api/superhero/{value.Id}", value, jsonMediaTypeFormatter);
 
             if (!response.IsSuccessStatusCode)
             {

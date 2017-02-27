@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SuperheroManager.Library.Models;
 using SuperheroManager.Web.Utilities;
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.Web.Controllers
 {

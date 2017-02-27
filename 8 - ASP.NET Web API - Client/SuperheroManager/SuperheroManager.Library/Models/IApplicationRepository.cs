@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.Library.Models
 {

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SuperheroManager.AdministrationApp.Annotations;
 using SuperheroManager.AdministrationApp.Models;
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.AdministrationApp.ViewModels
 {

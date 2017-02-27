@@ -1,8 +1,7 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using SuperHeroManager.DataModels.Common;
 
-namespace SuperHeroManager.DataModels.Superheroes
+namespace SuperHeroManager.DataModels.Entities
 {
     public class Skill : EntityBase
     {

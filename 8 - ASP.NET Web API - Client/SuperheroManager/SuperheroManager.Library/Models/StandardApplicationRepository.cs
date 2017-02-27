@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using SuperHeroManager.DataModels.Contexts;
 using SuperHeroManager.DataModels.Entities;
-using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperheroManager.Library.Models
 {

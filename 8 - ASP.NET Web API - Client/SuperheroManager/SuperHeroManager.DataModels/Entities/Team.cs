@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using SuperHeroManager.DataModels.Common;
 
-namespace SuperHeroManager.DataModels.Superheroes
+namespace SuperHeroManager.DataModels.Entities
 {
     public class Team : EntityBase
     {

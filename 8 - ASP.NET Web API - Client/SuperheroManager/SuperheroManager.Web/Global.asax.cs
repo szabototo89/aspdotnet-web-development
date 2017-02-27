@@ -9,7 +9,7 @@ using System.Web.Security;
 using SuperheroManager.Library.Models;
 using SuperheroManager.Web.ControllerFactories;
 using SuperHeroManager.DataModels.Contexts;
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.Web
 {

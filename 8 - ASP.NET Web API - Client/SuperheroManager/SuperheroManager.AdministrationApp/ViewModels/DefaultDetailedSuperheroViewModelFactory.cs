@@ -1,7 +1,7 @@
 using System;
 using SuperheroManager.AdministrationApp.Annotations;
 using SuperheroManager.AdministrationApp.Models;
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.AdministrationApp.ViewModels
 {

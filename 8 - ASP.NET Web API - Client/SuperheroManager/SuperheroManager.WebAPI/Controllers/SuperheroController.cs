@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using SuperheroManager.Library.Models;
 using SuperHeroManager.DataModels.Contexts;
-using SuperHeroManager.DataModels.Superheroes;
+using SuperHeroManager.DataModels.Entities;
 
 namespace SuperheroManager.WebAPI.Controllers
 {

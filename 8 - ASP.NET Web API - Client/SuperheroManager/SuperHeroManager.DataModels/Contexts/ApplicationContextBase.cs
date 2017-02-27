@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using SuperHeroManager.DataModels.Entities;
-using SuperHeroManager.DataModels.Superheroes;
 
 namespace SuperHeroManager.DataModels.Contexts
 {
