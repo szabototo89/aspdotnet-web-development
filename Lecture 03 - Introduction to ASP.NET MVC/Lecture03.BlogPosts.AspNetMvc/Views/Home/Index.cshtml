@@ -33,6 +33,15 @@
   </li>
 }
 
+@helper RenderBlogPosts(IEnumerable<BlogPost> blogPosts, Boolean isTopBlogPost)
+{
+  foreach (var blogPost in blogPosts.OrderByDescending(blogPost => blogPost.CreatedDate))
+  {
+    @RenderBlogPost(blogPost, isTopBlogPost: isTopBlogPost)
+  }
+}
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,15 +57,10 @@
     </h1>
 
     <ul class="blog-posts">
-      @foreach (var blogPost in Model.TopBlogPosts)
-      {
-        @RenderBlogPost(blogPost, isTopBlogPost: true)
-      }
+      @RenderBlogPosts(Model.TopBlogPosts, isTopBlogPost: true)
+      @RenderBlogPosts(Model.BlogPosts, isTopBlogPost: false)
 
-      @foreach (var blogPost in Model.BlogPosts.OrderBy(blogPost => blogPost.CreatedDate))
-      {
-        @RenderBlogPost(blogPost, isTopBlogPost: false)
-      }
+      @HomeHelpers.RenderTitle("Title")
     </ul>
   </div>
 </body>

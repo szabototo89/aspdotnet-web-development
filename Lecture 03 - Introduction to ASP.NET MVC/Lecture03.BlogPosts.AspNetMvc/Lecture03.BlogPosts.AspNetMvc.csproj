@@ -115,6 +115,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="App_Code\HomeHelpers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
