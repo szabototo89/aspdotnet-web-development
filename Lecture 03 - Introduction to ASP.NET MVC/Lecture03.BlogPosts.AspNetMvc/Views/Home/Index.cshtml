@@ -3,11 +3,22 @@
 }
 
 @using Lecture03.BlogPosts.EntityFramework.Domain
-@model Lecture03.BlogPosts.AspNetMvc.Controllers.ViewModels.HomeViewModel
+@model HomeViewModel
 
-@helper CreateBlogPost(BlogPost blogPost)
+@functions {
+
+    const string BlogPostDefaultClassName = "blog-post";
+    const string BlogPostActiveClassName = "blog-post--active";
+
+    public string GetBlogPostClassNames(Boolean isTopBlogPost) 
+        => !isTopBlogPost 
+            ? BlogPostDefaultClassName 
+            : $"{BlogPostDefaultClassName} {BlogPostActiveClassName}".Trim();
+}
+
+@helper RenderBlogPost(BlogPost blogPost, Boolean isTopBlogPost = false)
 {
-  <li class="blog-post">
+  <li class="@GetBlogPostClassNames(isTopBlogPost)">
     <div class="blog-post__heading">
       <div class="blog-post__heading--sub">
         @blogPost.CreatedDate.ToShortDateString()
@@ -37,11 +48,15 @@
     </h1>
 
     <ul class="blog-posts">
-      @foreach (var blogPost in Model.BlogPosts)
+      @foreach (var blogPost in Model.TopBlogPosts)
       {
-        @CreateBlogPost(blogPost)
+        @RenderBlogPost(blogPost, isTopBlogPost: true)
       }
-      
+
+      @foreach (var blogPost in Model.BlogPosts.OrderBy(blogPost => blogPost.CreatedDate))
+      {
+        @RenderBlogPost(blogPost, isTopBlogPost: false)
+      }
     </ul>
   </div>
 </body>

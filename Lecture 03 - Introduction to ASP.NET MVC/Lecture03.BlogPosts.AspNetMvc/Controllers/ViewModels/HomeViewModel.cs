@@ -8,6 +8,8 @@ namespace Lecture03.BlogPosts.AspNetMvc.Controllers.ViewModels
 {
     public class HomeViewModel
     {
+        public IEnumerable<BlogPost> TopBlogPosts { get; set; }
+
         public IEnumerable<BlogPost> BlogPosts { get; set; }
     }
 }
