@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lecture02.BlogPosts.EntityFramework.Domain
+namespace Lecture03.BlogPosts.EntityFramework.Domain
 {
     public interface IEntity
     {

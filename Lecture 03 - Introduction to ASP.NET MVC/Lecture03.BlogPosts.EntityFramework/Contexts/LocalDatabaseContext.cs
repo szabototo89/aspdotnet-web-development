@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
-using Lecture02.BlogPosts.EntityFramework.Domain;
+using Lecture03.BlogPosts.EntityFramework.Domain;
 
-namespace Lecture02.BlogPosts.EntityFramework.Contexts
+namespace Lecture03.BlogPosts.EntityFramework.Contexts
 {
     public class LocalDatabaseContext : DbContext
     {

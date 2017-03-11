@@ -33,9 +33,15 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 640px) {
   .blog-post {
     width: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .blog-post {
+    width: calc(100% * (1/3) - 2rem);
   }
 }
 

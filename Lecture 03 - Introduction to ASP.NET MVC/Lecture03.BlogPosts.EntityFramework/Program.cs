@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lecture02.BlogPosts.EntityFramework.Contexts;
-using Lecture02.BlogPosts.EntityFramework.Domain;
+using Lecture03.BlogPosts.EntityFramework.Contexts;
+using Lecture03.BlogPosts.EntityFramework.Domain;
 
-namespace Lecture02.BlogPosts.EntityFramework
+namespace Lecture03.BlogPosts.EntityFramework
 {
     class Program
     {
