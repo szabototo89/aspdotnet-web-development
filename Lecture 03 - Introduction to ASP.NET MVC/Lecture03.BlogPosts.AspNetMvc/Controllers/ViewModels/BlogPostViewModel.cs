@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Lecture03.BlogPosts.EntityFramework.Domain;
 
 namespace Lecture03.BlogPosts.AspNetMvc.Controllers.ViewModels
 {
-    public class HomeViewModel
+    public class BlogPostViewModel
     {
         public IEnumerable<BlogPost> TopBlogPosts { get; set; }
 

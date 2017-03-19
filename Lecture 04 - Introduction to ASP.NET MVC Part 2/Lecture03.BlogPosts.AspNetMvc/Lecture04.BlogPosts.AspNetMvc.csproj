@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lecture03.BlogPosts.AspNetMvc</RootNamespace>
-    <AssemblyName>Lecture03.BlogPosts.AspNetMvc</AssemblyName>
+    <RootNamespace>Lecture04.BlogPosts.AspNetMvc</RootNamespace>
+    <AssemblyName>Lecture04.BlogPosts.AspNetMvc</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -128,9 +128,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lecture03.BlogPosts.EntityFramework\Lecture03.BlogPosts.EntityFramework.csproj">
+    <ProjectReference Include="..\Lecture03.BlogPosts.EntityFramework\Lecture04.BlogPosts.EntityFramework.csproj">
       <Project>{65623646-1360-403A-865D-327DFDE3B7BB}</Project>
-      <Name>Lecture03.BlogPosts.EntityFramework</Name>
+      <Name>Lecture04.BlogPosts.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
