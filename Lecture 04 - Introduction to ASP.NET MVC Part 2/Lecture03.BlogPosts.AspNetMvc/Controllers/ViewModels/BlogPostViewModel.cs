@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Lecture03.BlogPosts.EntityFramework.Domain;
+using Lecture04.BlogPosts.EntityFramework.Domain;
 
-namespace Lecture03.BlogPosts.AspNetMvc.Controllers.ViewModels
+namespace Lecture04.BlogPosts.AspNetMvc.Controllers.ViewModels
 {
     public class BlogPostViewModel
     {

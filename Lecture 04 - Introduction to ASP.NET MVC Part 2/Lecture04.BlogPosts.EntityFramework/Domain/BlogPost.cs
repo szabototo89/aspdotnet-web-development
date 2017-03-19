@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lecture03.BlogPosts.EntityFramework.Domain
+namespace Lecture04.BlogPosts.EntityFramework.Domain
 {
     public class BlogPost: IEntity
     {
@@ -10,8 +10,6 @@ namespace Lecture03.BlogPosts.EntityFramework.Domain
         public String Title { get; set; }
 
         public String Content { get; set; }
-
-        public Boolean IsActive { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

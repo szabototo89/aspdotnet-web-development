@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Lecture03.BlogPosts.EntityFramework.Contexts;
-using Lecture03.BlogPosts.EntityFramework.Domain;
+using Lecture04.BlogPosts.EntityFramework.Contexts;
+using Lecture04.BlogPosts.EntityFramework.Domain;
 
-namespace Lecture03.BlogPosts.EntityFramework
+namespace Lecture04.BlogPosts.EntityFramework
 {
     class Program
     {

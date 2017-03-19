@@ -129,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lecture03.BlogPosts.EntityFramework\Lecture04.BlogPosts.EntityFramework.csproj">
-      <Project>{65623646-1360-403A-865D-327DFDE3B7BB}</Project>
+      <Project>{65623646-1360-403a-865d-327dfde3b7bb}</Project>
       <Name>Lecture04.BlogPosts.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>

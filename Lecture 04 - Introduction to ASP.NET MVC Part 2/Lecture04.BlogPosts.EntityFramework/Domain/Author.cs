@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Lecture03.BlogPosts.EntityFramework.Domain
+namespace Lecture04.BlogPosts.EntityFramework.Domain
 {
     public class Author : IEntity
     {

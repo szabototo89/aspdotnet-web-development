@@ -1,32 +1,32 @@
-﻿@{
+﻿@using Lecture03.BlogPosts.EntityFramework.Domain
+
+@{
     Layout = null;
 }
 
-@using Lecture03.BlogPosts.EntityFramework.Domain
-@model Lecture03.BlogPosts.AspNetMvc.Controllers.ViewModels.BlogPostViewModel
 
 @functions {
-  private static String GetBlogPostActiveClassName(Boolean isActive)
-  {
-    return isActive ? "blog-post--active" : String.Empty;
-  }
+    private static String GetBlogPostActiveClassName(Boolean isActive)
+    {
+      return isActive ? "blog-post--active" : String.Empty;
+    }
 }
 
 @helper RenderBlogPost(BlogPost blogPost, Boolean isActive)
 {
-  <li class="blog-post @GetBlogPostActiveClassName(isActive)">
-    <div class="blog-post__heading">
-      <div class="blog-post__heading--sub">
-        @blogPost.CreatedDate.ToShortDateString()
+    <li class="blog-post @GetBlogPostActiveClassName(isActive)">
+      <div class="blog-post__heading">
+        <div class="blog-post__heading--sub">
+          @blogPost.CreatedDate.ToShortDateString()
+        </div>
+        <div class="heading__title">
+          @blogPost.Title
+        </div>
       </div>
-      <div class="heading__title">
-        @blogPost.Title
+      <div class="blog-post__content">
+        @blogPost.Content
       </div>
-    </div>
-    <div class="blog-post__content">
-      @blogPost.Content
-    </div>
-  </li>
+    </li>
 }
 
 <!DOCTYPE html>
@@ -44,14 +44,14 @@
     </h1>
 
     <ul class="blog-posts">
-      @foreach (var blogPost in Model.BlogPosts)
+      @foreach (var blogPost in Model.TopBlogPosts)
       {
-        @RenderBlogPost(blogPost, blogPost.IsActive)
+          @RenderBlogPost(blogPost, isActive: true)
       }
 
       @foreach (var blogPost in Model.BlogPosts)
       {
-        @RenderBlogPost(blogPost, isActive: false)
+          @RenderBlogPost(blogPost, isActive: false)
       }
     </ul>
   </div>
