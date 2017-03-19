@@ -74,6 +74,8 @@
     <Compile Include="Domain\Author.cs" />
     <Compile Include="Domain\BlogPost.cs" />
     <Compile Include="Domain\IEntity.cs" />
+    <Compile Include="Repositories\DatabaseBlogPostRepository.cs" />
+    <Compile Include="Repositories\IBlogPostRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

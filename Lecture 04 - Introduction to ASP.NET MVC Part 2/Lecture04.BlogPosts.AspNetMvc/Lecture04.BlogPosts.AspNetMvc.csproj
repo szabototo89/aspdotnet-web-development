@@ -110,11 +110,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\TestBlogPostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_MainLayoutPage.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Shared\Navigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -125,10 +129,9 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lecture03.BlogPosts.EntityFramework\Lecture04.BlogPosts.EntityFramework.csproj">
+    <ProjectReference Include="..\Lecture04.BlogPosts.EntityFramework\Lecture04.BlogPosts.EntityFramework.csproj">
       <Project>{65623646-1360-403a-865d-327dfde3b7bb}</Project>
       <Name>Lecture04.BlogPosts.EntityFramework</Name>
     </ProjectReference>
