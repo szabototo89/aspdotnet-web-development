@@ -1,0 +1,155 @@
+﻿html {
+  box-sizing: border-box;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  
+  font-family: 'Open Sans', sans-serif;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+.blog-posts {
+  list-style: none;
+  
+  margin-left: auto;
+  margin-right: auto;
+  
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.blog-post {
+  margin: 1rem;
+  width: calc(100% * (1/2) - 2rem);
+  color: black;
+  background-color: #726e60;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+  .blog-post {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .blog-post {
+    width: calc(100% * (1/3) - 2rem);
+  }
+}
+
+.blog-post:hover {
+  transform: scale(1.05);
+}
+
+.blog-post__heading {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  font-weight: bold;
+  color: #eee82c;
+  padding: 0.5rem;
+}
+
+.blog-post__heading--sub {
+  order: 1;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.blog-post__content {
+  text-align: justify;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  background-color: #eee82c;
+}
+
+body {
+  background-color: #8099aa;
+}
+
+.page-title {
+  padding-bottom: 1rem;
+  color: #edff7a;
+}
+
+.blog-post--active .blog-post__heading {
+  background-color: white;
+  color: #1f2041;
+}
+
+.blog-post--active .blog-post__content {
+  color: white;
+  background-color: #1f2041;
+}
+
+.container {
+  padding: 2rem;
+  overflow: auto;
+  color: #eee82c;
+}
+
+.navigation__items {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #eee82c;
+}
+
+.navigation__anchor {
+  text-decoration: none;
+  font-weight: bold;
+  color: #726e60;
+  padding: 1rem;
+  display: block;
+}
+
+.navigation__anchor:hover {
+  color: #eee82c;
+  background-color: #726e60;
+}
+
+.details__validation-errors {
+  padding: 1rem 0rem;
+  background-color: red;
+}
+
+.details__validation-errors ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+label {
+  display: block;
+}
+
+label:first-child {
+  padding-top: 1rem;
+}
+
+input[type=text] {
+  display: block;
+  width: 100%;
+  
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  
+  padding: 5px;
+}
+
+input[type=submit] {
+  background-color: #EEE82C;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

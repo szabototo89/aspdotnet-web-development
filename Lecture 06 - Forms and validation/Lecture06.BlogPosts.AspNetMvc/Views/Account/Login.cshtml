@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+@model Lecture06.BlogPosts.AspNetMvc.Controllers.ViewModels.LoginViewModel
+
+@section Title
+{
+  <h1 class="page-title">
+    Log in
+  </h1>
+}
+
+@if (Model?.AdditionalMessage != null)
+{
+  <div>
+    @Model.AdditionalMessage
+  </div>
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div>
+      <label for="username">User Name</label>
+      @Html.TextBoxFor(viewModel => viewModel.Username)
+      @Html.ValidationMessageFor(viewModel => viewModel.Username)
+    </div>
+
+  <div>
+    <label for="password">Password</label>
+    @Html.PasswordFor(viewModel => viewModel.Password)
+    @Html.ValidationMessageFor(viewModel => viewModel.Password)
+  </div>
+
+  <input type="submit" value="Login" />
+}
+
+<div>
+  <span>Haven't got user account?</span>
+  <a href="@Url.Action("Register", "Account")">Click to register</a>
+</div>
+

@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lecture04.BlogPosts.AspNetMvc</RootNamespace>
-    <AssemblyName>Lecture04.BlogPosts.AspNetMvc</AssemblyName>
+    <RootNamespace>Lecture06.BlogPosts.AspNetMvc</RootNamespace>
+    <AssemblyName>Lecture06.BlogPosts.AspNetMvc</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -104,8 +104,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\StandardControllerFactory.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ViewModels\BlogPostViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\BlogPostDetailsViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\BlogPostsViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Controllers\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -113,11 +118,16 @@
     <Compile Include="Repository\MemoryBlogPostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MainLayoutPage.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\BlogPostDetails.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -130,9 +140,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lecture04.BlogPosts.EntityFramework\Lecture04.BlogPosts.EntityFramework.csproj">
+    <ProjectReference Include="..\Lecture06.BlogPosts.EntityFramework\Lecture06.BlogPosts.EntityFramework.csproj">
       <Project>{65623646-1360-403a-865d-327dfde3b7bb}</Project>
-      <Name>Lecture04.BlogPosts.EntityFramework</Name>
+      <Name>Lecture06.BlogPosts.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

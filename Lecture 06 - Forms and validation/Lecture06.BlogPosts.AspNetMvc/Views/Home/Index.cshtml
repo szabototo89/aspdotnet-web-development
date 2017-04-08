@@ -1,4 +1,4 @@
-﻿@using Lecture04.BlogPosts.EntityFramework.Domain
+﻿@using Lecture06.BlogPosts.EntityFramework.Domain
 
 @{
   Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
@@ -17,7 +17,7 @@
   <li class="blog-post @GetBlogPostActiveClassName(isActive)">
     <div class="blog-post__heading">
       <div class="blog-post__heading--sub">
-        @blogPost.CreatedDate.ToShortDateString()
+        @blogPost.CreatedDate.ToShortDateString() 
       </div>
       <div class="heading__title">
         @blogPost.Title
