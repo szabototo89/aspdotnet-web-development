@@ -1,14 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using Lecture06.BlogPosts.AspNetMvc.Controllers.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 namespace Lecture06.BlogPosts.AspNetMvc.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
+        private readonly UserManager<IdentityUser> userManager;
+
+        public IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
+
+        public AccountController(UserManager<IdentityUser> userManager)
+        {
+            this.userManager = userManager;
+        }
+
+        [HttpGet]
+        public ActionResult Logoff()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Login");
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -16,7 +39,7 @@ namespace Lecture06.BlogPosts.AspNetMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel model)
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
 
@@ -37,6 +60,18 @@ namespace Lecture06.BlogPosts.AspNetMvc.Controllers
             {
                 return View("Login", model);
             }
+
+            var user = await userManager.FindByNameAsync(model.Username);
+
+            if (user == null)
+            {
+                return View("Login", new LoginViewModel
+                {
+                    AdditionalMessage = "Wrong user name or password."
+                });
+            }
+
+            await SignInAsync(user);
 
             return RedirectToAction("Index", "Home");
         }
@@ -69,7 +104,7 @@ namespace Lecture06.BlogPosts.AspNetMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
@@ -93,12 +128,29 @@ namespace Lecture06.BlogPosts.AspNetMvc.Controllers
                 return View("Register", model);
             }
 
+            var user = new IdentityUser(model.Username);
+
+            var result = await userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                return View("Login", new LoginViewModel
+                {
+                    AdditionalMessage = "User creation has failed."
+                });
+            }
 
             return View("Login", new LoginViewModel
             {
                 AdditionalMessage = "User has been registered successfully.",
                 Username = model.Username
             });
+        }
+
+        private async Task SignInAsync(IdentityUser user)
+        {
+            var identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(identity);
         }
     }
 }

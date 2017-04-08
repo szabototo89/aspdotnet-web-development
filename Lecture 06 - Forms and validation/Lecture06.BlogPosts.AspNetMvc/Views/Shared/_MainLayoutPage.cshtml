@@ -15,20 +15,46 @@
   @RenderSection("StyleSheets", required: false)
 </head>
 <body>
-  <div class="navigation">
-    <ul class="navigation__items">
+<div class="navigation">
+  <ul class="navigation__items">
+    @if (!User.Identity.IsAuthenticated)
+    {
       <li class="navigation__item">
-        <a href="@Url.Action("Index", "Home")" class="navigation__anchor">
-          Home
+        <a href="@Url.Action("Login", "Account")" class="navigation__anchor">
+          Login
         </a>
       </li>
       <li class="navigation__item">
-        <a href="@Url.Action("About", "Home")" class="navigation__anchor">
-          About
+        <a href="@Url.Action("Register", "Account")" class="navigation__anchor">
+          Register
         </a>
       </li>
-    </ul>
-  </div>
+    }
+    else
+    {
+      <li class="navigation__item">
+        <span class="navigation__anchor navigation__anchor--disabled">
+          Hello, @(User.Identity.Name)!
+        </span>
+      </li>
+      <li class="navigation__item">
+        <a href="@Url.Action("Logoff", "Account")" class="navigation__anchor">
+          Log Off
+        </a>
+      </li>
+    }
+    <li class="navigation__item">
+      <a href="@Url.Action("Index", "Home")" class="navigation__anchor">
+        Home
+      </a>
+    </li>
+    <li class="navigation__item">
+      <a href="@Url.Action("About", "Home")" class="navigation__anchor">
+        About
+      </a>
+    </li>
+  </ul>
+</div>
 
 <div class="container">
   @RenderSection("Title", required: true)

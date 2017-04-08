@@ -7,6 +7,7 @@ using Lecture06.BlogPosts.EntityFramework.Repositories;
 
 namespace Lecture06.BlogPosts.AspNetMvc.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IBlogPostRepository repository;

@@ -2,6 +2,8 @@
 using System.Web.Routing;
 using Lecture06.BlogPosts.AspNetMvc.Controllers;
 using Lecture06.BlogPosts.AspNetMvc.Repository;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Lecture06.BlogPosts.AspNetMvc
 {
@@ -13,7 +15,12 @@ namespace Lecture06.BlogPosts.AspNetMvc
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             var blogPostRepository = new MemoryBlogPostRepository();
-            ControllerBuilder.Current.SetControllerFactory(new StandardControllerFactory(blogPostRepository));
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>())
+            {
+                PasswordValidator = new MinimumLengthValidator(4)
+            };
+
+            ControllerBuilder.Current.SetControllerFactory(new StandardControllerFactory(blogPostRepository, userManager));
         }
     }
 }

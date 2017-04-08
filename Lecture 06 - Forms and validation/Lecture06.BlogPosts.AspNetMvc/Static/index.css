@@ -115,7 +115,7 @@ body {
   display: block;
 }
 
-.navigation__anchor:hover {
+.navigation__anchor:hover:not(.navigation__anchor--disabled) {
   color: #eee82c;
   background-color: #726e60;
 }
