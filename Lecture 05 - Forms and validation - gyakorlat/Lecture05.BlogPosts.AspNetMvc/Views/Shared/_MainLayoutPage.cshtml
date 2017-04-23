@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>@ViewBag.Title</title>
+  <link rel="stylesheet" type="text/css" href="~/Static/index.css"/>
+
+  @RenderSection("Scripts", required: false)
+  @RenderSection("StyleSheets", required: false)
+</head>
+<body>
+  <div class="navigation">
+    <ul class="navigation__items">
+      <li class="navigation__item">
+        <a href="@Url.Action("Index", "Home")" class="navigation__anchor">
+          Home
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="@Url.Action("AddBlogPost", "Home")" class="navigation__anchor">
+          Add Blog Post
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="@Url.Action("About", "Home")" class="navigation__anchor">
+          About
+        </a>
+      </li>
+    </ul>
+  </div>
+
+<div class="container">
+  @RenderSection("Title", required: true)
+
+  @RenderBody()
+</div>
+</body>
+</html>

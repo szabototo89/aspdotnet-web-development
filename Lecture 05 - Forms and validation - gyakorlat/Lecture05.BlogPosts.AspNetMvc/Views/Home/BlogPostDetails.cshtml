@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "BlogPostDetails";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+@using Lecture05.BlogPosts.EntityFramework.Domain
+@model Lecture05.BlogPosts.EntityFramework.Domain.BlogPost
+
+@section Title {
+ <h2>Add/Edit Blog Post</h2>
+}
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("AddBlogPost", "Home", FormMethod.Post)) {
+  <label for="title">Title</label>
+  @Html.TextBoxFor(blogPost => blogPost.Title)
+  @Html.ValidationMessageFor(blogPost => blogPost.Title)
+
+  <label for="author">Author(s) (<a href="#" class="add-blog-post">add</a>)</label>
+  <div class="authors__container">
+    @foreach (var author in Model?.Authors ?? Enumerable.Empty<Author>())
+    {
+      @Html.TextBox("author", author.FullName)
+    }
+  </div>
+
+  <label for="content">Content</label>
+  @Html.TextAreaFor(blogPost => blogPost.Content)
+
+  <input type="submit" value="Add Blog"/>
+}
+
+@section Scripts
+{
+  <script src="https://code.jquery.com/jquery-3.2.1.js"
+          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+          crossorigin="anonymous"></script>
+  <script>
+    $(function() {
+      $(".add-blog-post").on('click', function() {
+        $(".authors__container").append($('<input type="text" name="author" />'))
+      });
+    });
+  </script>
+}

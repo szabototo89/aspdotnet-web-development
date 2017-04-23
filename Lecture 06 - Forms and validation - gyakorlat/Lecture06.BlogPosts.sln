@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture06.BlogPosts.AspNetMvc", "Lecture06.BlogPosts.AspNetMvc\Lecture06.BlogPosts.AspNetMvc.csproj", "{0220BFEE-B8BB-4DAD-981C-CBD4B684204D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture06.BlogPosts.EntityFramework", "Lecture06.BlogPosts.EntityFramework\Lecture06.BlogPosts.EntityFramework.csproj", "{65623646-1360-403A-865D-327DFDE3B7BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0220BFEE-B8BB-4DAD-981C-CBD4B684204D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0220BFEE-B8BB-4DAD-981C-CBD4B684204D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0220BFEE-B8BB-4DAD-981C-CBD4B684204D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0220BFEE-B8BB-4DAD-981C-CBD4B684204D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65623646-1360-403A-865D-327DFDE3B7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65623646-1360-403A-865D-327DFDE3B7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65623646-1360-403A-865D-327DFDE3B7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65623646-1360-403A-865D-327DFDE3B7BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

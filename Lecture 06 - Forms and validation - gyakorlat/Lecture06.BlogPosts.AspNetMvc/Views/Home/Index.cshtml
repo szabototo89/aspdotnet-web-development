@@ -1,0 +1,48 @@
+﻿@using Lecture06.BlogPosts.EntityFramework.Domain
+
+@{
+  Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+  ViewBag.Title = "Main page";
+}
+
+@functions {
+  private static String GetBlogPostActiveClassName(Boolean isActive)
+  {
+    return isActive ? "blog-post--active" : String.Empty;
+  }
+}
+
+@helper RenderBlogPost(BlogPost blogPost, Boolean isActive)
+{
+  <li class="blog-post @GetBlogPostActiveClassName(isActive)">
+    <div class="blog-post__heading">
+      <div class="blog-post__heading--sub">
+        @blogPost.CreatedDate.ToShortDateString() 
+      </div>
+      <div class="heading__title">
+        @blogPost.Title
+      </div>
+    </div>
+    <div class="blog-post__content">
+      @blogPost.Content
+    </div>
+  </li>
+}
+
+@section Title {
+  <h1 class="page-title">
+    My Blog
+  </h1> 
+}
+
+<ul class="blog-posts">
+  @foreach (var blogPost in Model.TopBlogPosts)
+  {
+    @RenderBlogPost(blogPost, isActive: true)
+  }
+
+  @foreach (var blogPost in Model.BlogPosts)
+  {
+    @RenderBlogPost(blogPost, isActive: false)
+  }
+</ul>
