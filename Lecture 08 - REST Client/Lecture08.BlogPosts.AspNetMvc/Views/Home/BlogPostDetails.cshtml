@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "BlogPostDetails";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+@using Lecture08.BlogPosts.EntityFramework.Domain
+@model Lecture08.BlogPosts.AspNetMvc.Controllers.ViewModels.BlogPostDetailsViewModel
+
+@helper RenderTextBox(String name, String value, String placeholder = "")
+{
+  <input type="text" class="input__textbox" id="@name" name="@name" value="@value" placeholder="@placeholder" />
+}
+
+@helper RenderAuthorTextBox(String value = "") {
+  @RenderTextBox("authors", value, placeholder: "Please specify blog post author ...")
+}
+
+@helper GetTitle(Boolean isEditing)
+{
+  @:@(isEditing ? "Edit" : "New") Blog Post
+}
+
+@section Title {
+  <h2>@GetTitle(Model.IsEditing)</h2>
+}
+
+<div class="details__validation-errors">
+  @Html.ValidationSummary(excludePropertyErrors: false)
+</div>
+
+@using (Html.BeginForm("CreateOrEditBlogPost", "Home", FormMethod.Post))
+{
+  if (Model.IsEditing)
+  {
+    <input type="hidden" id="id" name="id" value="@Model.Id" />
+  }
+
+    <label for="title">
+      Title
+    </label>
+    
+    @RenderTextBox("title", Model.Title, placeholder: "Please specify blog post title ...")
+
+    <label for="authors">
+      Author(s) (<a href="#" class="authors__add-button">add</a>)
+    </label>
+
+    <div class="authors__container">
+      @foreach (var author in Model.Authors ?? Enumerable.Empty<Author>())
+      {
+        @RenderAuthorTextBox(author.FullName)
+      }
+    </div>
+
+    @RenderAuthorTextBox()
+
+    <label for="content">
+      Content
+    </label>
+
+    @RenderTextBox("content", Model.Content, placeholder: "Please specify blog post content ...")
+
+    <input type="submit" value="Submit" />
+}
+
+@section Scripts
+{
+  <script src="https://code.jquery.com/jquery-3.2.1.js"
+          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+          crossorigin="anonymous"></script>
+
+  <script>
+    $(function() {
+      $('.authors__add-button').on('click', function() {
+        $(`@RenderAuthorTextBox()`)
+          .appendTo($('.authors__container'));
+      });
+    });
+  </script>
+}

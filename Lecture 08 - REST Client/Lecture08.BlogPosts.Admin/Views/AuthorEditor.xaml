@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="Lecture08.BlogPosts.Admin.Views.AuthorEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lecture08.BlogPosts.Admin.Views"
+             xmlns:domain="clr-namespace:Lecture08.BlogPosts.EntityFramework.Domain;assembly=Lecture08.BlogPosts.EntityFramework"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <DockPanel LastChildFill="True">
+    <UniformGrid Rows="1" Columns="2">
+      <ListBox ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}">
+        <ListBox.ItemTemplate>
+          <DataTemplate DataType="domain:Author">
+            <DockPanel LastChildFill="True">
+              <StackPanel Orientation="Horizontal">
+                <Label Foreground="Gray" 
+                             Content="{Binding Id}" />
+                <Label DockPanel.Dock="Top"
+                             Content="{Binding FullName}"
+                             FontWeight="Bold"
+                             FontSize="15" />
+              </StackPanel>
+            </DockPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <GroupBox Header="Add Author">
+        <DockPanel LastChildFill="True">
+          <UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="2">
+            <Button Command="{Binding AddAuthor}">Add</Button>
+            <Button Command="{Binding RemoveAuthor}">Remove</Button>
+          </UniformGrid>
+          <StackPanel>
+            <TextBlock>Full Name</TextBlock>
+            <TextBox Text="{Binding DetailedAuthor.FullName}" />
+          </StackPanel>
+        </DockPanel>
+      </GroupBox>
+    </UniformGrid>
+  </DockPanel>
+</UserControl>

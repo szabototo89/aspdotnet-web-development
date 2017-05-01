@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+}
+
+@model Lecture08.BlogPosts.AspNetMvc.Controllers.ViewModels.RegisterViewModel
+
+@section Title 
+{
+  <h1 class="page-title">
+    Register
+  </h1>
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div>
+      <label for="username">User Name</label>
+      @Html.TextBoxFor(viewModel => viewModel.Username)
+      @Html.ValidationMessageFor(viewModel => viewModel.Username)
+    </div>
+
+    <div>
+      <label for="email">E-mail</label>
+      @Html.TextBoxFor(viewModel => viewModel.Email)
+      @Html.ValidationMessageFor(viewModel => viewModel.Email)
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      @Html.PasswordFor(viewModel => viewModel.Password)
+      @Html.ValidationMessageFor(viewModel => viewModel.Password)
+    </div>
+
+    <div>
+      <label for="secondary-password">Confirm Password</label>
+      @Html.PasswordFor(viewModel => viewModel.SecondaryPassword)
+    </div>
+
+    <input type="submit" value="Register">
+}
